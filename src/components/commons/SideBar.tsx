@@ -5,6 +5,7 @@ import { UserButton } from '@clerk/nextjs';
 import { auth } from '@clerk/nextjs/server';
 import Link from 'next/link';
 import { IconUser } from '../icons';
+import { ModeToggle } from './ModeToggle';
 
 const SideBar = async () => {
   const { userId } = await auth();
@@ -24,6 +25,7 @@ const SideBar = async () => {
         ))}
       </ul>
       <div className='mt-auto flex justify-end items-center gap-2'>
+        <ModeToggle />
         {userId ? (
           <div className='cursor-pointer text-primary bg-white flex flex-col text-sm items-center border p-2 rounded-md shadow-sm hover:bg-primary hover:text-white'>
             <UserButton />

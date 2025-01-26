@@ -6,6 +6,14 @@
   :root {
     --radius: 0.5rem;
   }
+  body {
+    @apply bg-gray-100 dark:bg-grayDarkest dark:text-white text-grayDarkest antialiased;
+  }
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 @layer components {
@@ -19,5 +27,23 @@
     to {
       stroke-dashoffset: 0;
     }
+  }
+}
+
+@layer utilities {
+  .flexCenter {
+    @apply flex items-center justify-center;
+  }
+  .bgDarkMode {
+    @apply bg-white dark:bg-grayDarker;
+  }
+  .borderDarkMode {
+    @apply border-gray-200 dark:border-opacity-10;
+  }
+  .focus-primary:focus {
+    @apply focus:ring-4 focus:ring-primary focus:ring-opacity-10;
+  }
+  .skeleton {
+    @apply bg-gray-200 dark:bg-grayDarker animate-pulse;
   }
 }
