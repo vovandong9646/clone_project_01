@@ -44,3 +44,15 @@ export const updateCourseAction = async (params: TUpdatecourse) => {
     console.error(error);
   }
 };
+
+export const getAllCoursesAction = async (): Promise<ICourse[] | undefined> => {
+  try {
+    connectToDatabase();
+
+    const courseList = await Course.find();
+    if (!courseList) return;
+    return courseList;
+  } catch (error) {
+    console.error(error);
+  }
+};
