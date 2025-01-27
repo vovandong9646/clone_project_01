@@ -25,7 +25,7 @@ const CourseItem = ({ course }: { course: ICourse }) => {
       </div>
       <div className='mt-3'>
         <Link
-          href='#'
+          href={`/course/${course.slug}`}
           className='bg-primary text-white px-3 py-1 h-10  rounded-md w-full flex items-center justify-center'
         >
           Xem chi tiết
