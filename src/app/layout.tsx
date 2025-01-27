@@ -3,6 +3,7 @@ import { Roboto } from 'next/font/google';
 import './globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import { ThemeProvider } from '@/components/commons/theme-provider';
+import { ToastContainer } from 'react-toastify';
 
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -27,6 +28,7 @@ export default function RootLayout({
         <body className={roboto.className}>
           <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
             {children}
+            <ToastContainer />
           </ThemeProvider>
         </body>
       </html>

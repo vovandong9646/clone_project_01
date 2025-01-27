@@ -6,7 +6,7 @@ const DashBoardLayout = ({ children }: { children: React.ReactNode }) => {
     <div className='grid grid-cols-[300px,minmax(0,2fr)]'>
       <SideBar />
       <div></div>
-      <div>{children}</div>
+      <div className='p-5'>{children}</div>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { TMenuItem } from '@/types';
 
 import { IconExplore, IconStudy, IconPlay, IconUser, IconOrder, IconComment } from '@/components/icons';
+import { ECourseLevel, ECourseStatus } from '@/types/enum';
 
 export const menuItems: TMenuItem[] = [
   {
@@ -32,5 +33,35 @@ export const menuItems: TMenuItem[] = [
     title: 'Quản lý bình luận',
     path: '/manage/comment',
     icon: <IconComment className='size-5' />
+  }
+];
+
+export const courseStatus = [
+  {
+    value: ECourseStatus.PENDING,
+    label: 'Chờ duyệt'
+  },
+  {
+    value: ECourseStatus.APPROVED,
+    label: 'Đã duyệt'
+  },
+  {
+    value: ECourseStatus.REJECTED,
+    label: 'Từ chối'
+  }
+];
+
+export const courseLevel = [
+  {
+    value: ECourseLevel.BEGINNER,
+    label: 'Sơ cấp'
+  },
+  {
+    value: ECourseLevel.INTERMEDIATE,
+    label: 'Trung cấp'
+  },
+  {
+    value: ECourseLevel.ADVANCED,
+    label: 'Cao cấp'
   }
 ];
