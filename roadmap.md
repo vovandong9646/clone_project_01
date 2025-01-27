@@ -16,3 +16,11 @@
    3. Làm trang lesson (bài học)
       1. CRUD cho chương học
 9. làm trang học /course-slug/lesson/lesson-slug
+
+roadmap
+làm trang CRUD khoá học
+  - CourseManage (/manage/course)
+  - CRUD cho course
+  - Làm trang lecture -> CRUD
+  - làm trang lesson -> CRUD
+  - render lại data của lecture và lesson vào trang courseDetail

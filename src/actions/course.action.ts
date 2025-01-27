@@ -23,7 +23,7 @@ export const getCourseBySlugAction = async ({ slug }: { slug: string }): Promise
   try {
     connectToDatabase();
 
-    const course = await Course.findOne({ slug });
+    const course = await Course.findOne({ slug: slug, _destroy: false });
     if (!course) return;
     return course;
   } catch (error) {
@@ -49,7 +49,7 @@ export const getAllCoursesAction = async (): Promise<ICourse[] | undefined> => {
   try {
     connectToDatabase();
 
-    const courseList = await Course.find();
+    const courseList = await Course.find({ _destroy: false });
     if (!courseList) return;
     return courseList;
   } catch (error) {

@@ -98,6 +98,9 @@ const CourseUpdate = ({ course }: { course: ICourse }) => {
           router.push(`/manage/course/update?slug=${values.slug}`);
         }
 
+        // redirect to manage course page
+        router.push('/manage/course');
+
         return;
       }
       toast.error('Cập nhật khoá học thất bại');

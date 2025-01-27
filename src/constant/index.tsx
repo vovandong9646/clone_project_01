@@ -39,15 +39,18 @@ export const menuItems: TMenuItem[] = [
 export const courseStatus = [
   {
     value: ECourseStatus.PENDING,
-    label: 'Chờ duyệt'
+    label: 'Chờ duyệt',
+    className: 'text-yellow-800 bg-yellow-400'
   },
   {
     value: ECourseStatus.APPROVED,
-    label: 'Đã duyệt'
+    label: 'Đã duyệt',
+    className: 'text-green-800 bg-green-400'
   },
   {
     value: ECourseStatus.REJECTED,
-    label: 'Từ chối'
+    label: 'Từ chối',
+    className: 'text-red-800 bg-red-400'
   }
 ];
 
