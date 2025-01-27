@@ -1,5 +1,4 @@
 import { clerkMiddleware } from '@clerk/nextjs/server';
-import { NextRequest, NextResponse } from 'next/server';
 
 export default clerkMiddleware();
 
