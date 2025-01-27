@@ -17,6 +17,7 @@ import { courseLevel, courseStatus } from '@/constant';
 import { ICourse } from '@/database/course.model';
 import { IconAdd } from '@/components/icons';
 import { useImmer } from 'use-immer';
+import { UploadButton } from '@/utils/uploadthing';
 
 const formSchema = z.object({
   title: z.string().nonempty('Tên khoá học không được để trống').min(10, 'Tên khoá học phải có ít nhất 10 ký tự'),
@@ -104,6 +105,10 @@ const CourseUpdate = ({ course }: { course: ICourse }) => {
       console.error(error);
     }
   }
+
+  // lắng nghe sự thay đổi của field image
+  const imageWatch = form.watch('image');
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
@@ -189,7 +194,22 @@ const CourseUpdate = ({ course }: { course: ICourse }) => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Ảnh đại diện:</FormLabel>
-                <FormControl></FormControl>
+                <FormControl>
+                  <div>
+                    {imageWatch && <img src={imageWatch} alt='image' />}
+                    <UploadButton
+                      endpoint='imageUploader'
+                      onClientUploadComplete={(res) => {
+                        // form.setValue(field.name, res[0].url);
+                        form.setValue('image', res[0].url);
+                        toast.success('Upload Image Completed');
+                      }}
+                      onUploadError={(error: Error) => {
+                        toast.error(`ERROR! ${error.message}`);
+                      }}
+                    />
+                  </div>
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
