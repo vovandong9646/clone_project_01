@@ -1,3 +1,5 @@
+import { ICourse } from '@/database/course.model';
+
 export type TMenuItem = {
   title: string;
   path: string;
@@ -24,4 +26,21 @@ export type TUpdatecourse = {
   //   level?: string;
   // };
   updateData: Partial<ICourse>;
+};
+
+export type TCreateLecture = {
+  title: string;
+  slug?: string;
+  course: string;
+  path: string;
+};
+
+export interface ICourseWithLectures extends Omit<ICourse, 'lectures'> {
+  lectures: TLecture[];
+}
+
+export type TUpdateLecture = {
+  lectureId: string;
+  updateData: Partial<TLecture>;
+  path: string;
 };

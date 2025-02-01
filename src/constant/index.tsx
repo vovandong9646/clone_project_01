@@ -68,3 +68,7 @@ export const courseLevel = [
     label: 'Cao cấp'
   }
 ];
+
+export const commonCssClases = {
+  btnIcon: 'flex items-center justify-center rounded-full p-1 bg-gray-200 hover:bg-primary hover:text-white'
+};

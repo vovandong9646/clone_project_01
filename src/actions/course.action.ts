@@ -1,8 +1,9 @@
 'use server';
 
 import Course, { ICourse } from '@/database/course.model';
+import Lecture from '@/database/lecture.model';
 import { connectToDatabase } from '@/lib/mongoose';
-import { TCreateCourse, TUpdatecourse } from '@/types';
+import { ICourseWithLectures, TCreateCourse, TUpdatecourse } from '@/types';
 import { revalidatePath } from 'next/cache';
 
 export const createCourseAction = async (params: TCreateCourse) => {
@@ -19,11 +20,15 @@ export const createCourseAction = async (params: TCreateCourse) => {
   }
 };
 
-export const getCourseBySlugAction = async ({ slug }: { slug: string }): Promise<ICourse | undefined> => {
+export const getCourseBySlugAction = async ({ slug }: { slug: string }): Promise<ICourseWithLectures | undefined> => {
   try {
     connectToDatabase();
 
-    const course = await Course.findOne({ slug: slug, _destroy: false });
+    const course = await Course.findOne({ slug: slug, _destroy: false }).populate({
+      path: 'lectures',
+      model: Lecture,
+      match: { _destroy: false }
+    });
     if (!course) return;
     return course;
   } catch (error) {
