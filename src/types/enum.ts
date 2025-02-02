@@ -21,3 +21,8 @@ export enum ECourseLevel {
   INTERMEDIATE = 'INTERMEDIATE',
   ADVANCED = 'ADVANCED'
 }
+
+export enum ELessonType {
+  VIDEO = 'VIDEO',
+  TEXT = 'TEXT'
+}

@@ -64,7 +64,7 @@ const CourseManage = ({ courseList }: { courseList: ICourse[] }) => {
             const statusName = status?.label || '';
             const statusClassName = status?.className || '';
             return (
-              <TableRow>
+              <TableRow key={course._id}>
                 <TableCell>
                   <div className='flex items-start space-x-4'>
                     <img src={course.image} alt='' className='w-[150px] object-cover rounded-lg' />

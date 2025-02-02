@@ -2,6 +2,7 @@
 
 import Course, { ICourse } from '@/database/course.model';
 import Lecture from '@/database/lecture.model';
+import Lesson from '@/database/lesson.model';
 import { connectToDatabase } from '@/lib/mongoose';
 import { ICourseWithLectures, TCreateCourse, TUpdatecourse } from '@/types';
 import { revalidatePath } from 'next/cache';
@@ -27,7 +28,12 @@ export const getCourseBySlugAction = async ({ slug }: { slug: string }): Promise
     const course = await Course.findOne({ slug: slug, _destroy: false }).populate({
       path: 'lectures',
       model: Lecture,
-      match: { _destroy: false }
+      match: { _destroy: false },
+      populate: {
+        path: 'lessons',
+        model: Lesson,
+        match: { _destroy: false }
+      }
     });
     if (!course) return;
     return course;

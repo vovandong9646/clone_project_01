@@ -19,8 +19,9 @@
 
 roadmap
 làm trang CRUD khoá học
-  - CourseManage (/manage/course)
-  - CRUD cho course
-  - Làm trang lecture -> CRUD
-  - làm trang lesson -> CRUD
+  - CourseManage (/manage/course)           -> Done
+  - CRUD cho course                         -> Done
+  - Làm trang lecture -> CRUD               -> DONE
+  - làm trang lesson -> CRUD                -> DONE
   - render lại data của lecture và lesson vào trang courseDetail
+  - Tạo trang học để user vào học `[course]/lesson/[lessonId]` hoặc nếu lỗi thì là `[course]/lesson?slug=lessonSlug`
