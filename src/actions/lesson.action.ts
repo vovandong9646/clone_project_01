@@ -2,9 +2,9 @@
 
 import Course from '@/database/course.model';
 import Lecture from '@/database/lecture.model';
-import Lesson from '@/database/lesson.model';
+import Lesson, { ILesson } from '@/database/lesson.model';
 import { connectToDatabase } from '@/lib/mongoose';
-import { TCreateLesson, TUpdateLecture, TUpdateLesson } from '@/types';
+import { TCreateLesson, TUpdateLesson } from '@/types';
 import { revalidatePath } from 'next/cache';
 import slugify from 'slugify';
 
@@ -58,6 +58,35 @@ export const updateLesson = async (params: TUpdateLesson) => {
     return {
       success: true
     };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchLessonBySlugAndCourse = async (params: {
+  slug: string;
+  course: string;
+}): Promise<ILesson | undefined> => {
+  try {
+    connectToDatabase();
+    const currentCourse = await Course.findOne({ slug: params.course, _destroy: false }).select('_id');
+    if (!currentCourse) return;
+
+    const lesson = await Lesson.findOne({ slug: params.slug, course: currentCourse._id, _destroy: false });
+    if (!lesson) return;
+    return lesson;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchAllLessonByCourse = async (params: { course: string }): Promise<ILesson[] | undefined> => {
+  try {
+    connectToDatabase();
+
+    const lessonList = await Lesson.find({ course: params.course, _destroy: false }).sort({ lecture: 1 });
+    if (!lessonList) return;
+    return lessonList;
   } catch (error) {
     console.log(error);
   }

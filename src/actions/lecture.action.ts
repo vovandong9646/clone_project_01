@@ -2,8 +2,9 @@
 
 import Course from '@/database/course.model';
 import Lecture from '@/database/lecture.model';
+import Lesson from '@/database/lesson.model';
 import { connectToDatabase } from '@/lib/mongoose';
-import { TCreateLecture, TUpdateLecture } from '@/types';
+import { ILectureWithLessons, TCreateLecture, TUpdateLecture } from '@/types';
 import { revalidatePath } from 'next/cache';
 import slugify from 'slugify';
 
@@ -51,6 +52,25 @@ export const updateLecture = async (params: TUpdateLecture) => {
     return {
       success: true
     };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchAllLectureByCourse = async ({
+  courseId
+}: {
+  courseId: string;
+}): Promise<ILectureWithLessons[] | undefined> => {
+  try {
+    connectToDatabase();
+    const lectures = await Lecture.find({ course: courseId, _destroy: false }).populate({
+      path: 'lessons',
+      model: Lesson,
+      match: { _destroy: false }
+    });
+    if (!lectures) return;
+    return lectures;
   } catch (error) {
     console.log(error);
   }

@@ -2,8 +2,11 @@ import { IconExplore, IconPlay, IconStudy } from '@/components/icons';
 import { ICourse } from '@/database/course.model';
 import Link from 'next/link';
 import React from 'react';
+import LessonContent from '../../[course]/lesson/[slug]/LessonContent';
+import { ICourseWithLectures } from '@/types';
 
-const CourseDetail = ({ courseDetail }: { courseDetail: ICourse }) => {
+const CourseDetail = ({ courseDetail }: { courseDetail: ICourseWithLectures }) => {
+  const lectures = courseDetail.lectures;
   return (
     <div className='grid grid-cols-[minmax(0,2fr),minmax(0,1fr)]'>
       <div className='w-full p-4'>
@@ -14,6 +17,14 @@ const CourseDetail = ({ courseDetail }: { courseDetail: ICourse }) => {
             <span className='text-primary'>♚</span> Mô tả:
           </h2>
           <p className='text-sm text-slate-700'>{courseDetail.desc}</p>
+        </div>
+        <div className='mt-4'>
+          <h2 className='text-xl'>
+            <span className='text-primary'>♚</span> Nội dung khoá học:
+          </h2>
+          <p className='text-sm text-slate-700'>
+            <LessonContent lectures={lectures} />
+          </p>
         </div>
         <div className='mt-4'>
           <h2 className='text-xl'>

@@ -26,6 +26,7 @@ const UpdateContent = ({ course }: { course: ICourseWithLectures }) => {
   const handleAddNewLesson = async (lectureId: string) => {
     const res = await createLessonAction({
       title: 'Bài học mới',
+      slug: 'bai-hoc-moi-'.concat(Math.random().toString(36).substring(7)),
       course: course._id.toString(),
       lecture: lectureId,
       path: `/manage/course/update-content?slug=${course.slug}`
